@@ -3,8 +3,6 @@
 use strict;
 use warnings;
 
-use Shell qw(host dig);
-
 print <<END;
 Content-type: text/html
 
@@ -54,12 +52,12 @@ print "<pre>You are using <b>" . do {
 } . "</b>\n";
 
 
-chomp (my $remote = host($ENV{REMOTE_ADDR}));
-chomp (my $server = host($ENV{SERVER_ADDR}));
-chomp (my $server0 = host($ENV{SERVER_NAME}));
-chomp (my $digremote = dig('-x', $ENV{REMOTE_ADDR}));
-chomp (my $digserver = dig('-x', $ENV{SERVER_ADDR}));
-chomp (my $digserver0 = dig('-t', 'any', $ENV{SERVER_NAME}));
+chomp (my $remote = `host $ENV{REMOTE_ADDR}`);
+chomp (my $server = `host $ENV{SERVER_ADDR}`);
+chomp (my $server0 = `host $ENV{SERVER_NAME}`);
+chomp (my $digremote = `dig -x $ENV{REMOTE_ADDR}`);
+chomp (my $digserver = `dig -x $ENV{SERVER_ADDR}`);
+chomp (my $digserver0 = `dig -t any $ENV{SERVER_NAME}`);
 
 print <<END;
 Client address: $ENV{REMOTE_ADDR}
