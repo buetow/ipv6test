@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+# This is QUICK AND DIRTY!
+
 use strict;
 use warnings;
 
